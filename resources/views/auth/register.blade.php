@@ -242,39 +242,6 @@
             color: white;
         }
 
-        .terms-group {
-            margin-bottom: 28px;
-        }
-
-        .terms-checkbox {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-        }
-
-        .terms-input {
-            width: 18px;
-            height: 18px;
-            accent-color: #1e74ff;
-            margin-top: 2px;
-        }
-
-        .terms-label {
-            font-size: 14px;
-            color: #4a5568;
-            line-height: 1.5;
-        }
-
-        .terms-label a {
-            color: #1e74ff;
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .terms-label a:hover {
-            text-decoration: underline;
-        }
-
         .register-button {
             width: 100%;
             padding: 18px;
@@ -321,6 +288,12 @@
 
         .login-text a:hover {
             color: #1559cc;
+        }
+
+        .error-message {
+            color: #ef4444;
+            font-size: 12px;
+            margin-top: 5px;
         }
 
         @media (max-width: 1024px) {
@@ -401,7 +374,7 @@
                 <p class="form-subtitle">Fill in your details to get started with our platform</p>
             </div>
 
-            <form id="registerForm" method="POST" action="{{ route('register') }}">
+            <form method="POST" action="{{ route('register') }}">
                 @csrf
 
                 <div class="form-grid">
@@ -416,7 +389,11 @@
                             value="{{ old('username') }}"
                             required
                         >
-                        <x-input-error :messages="$errors->get('username')" class="mt-2" />
+                        @if($errors->get('username'))
+                            @foreach($errors->get('username') as $error)
+                                <div class="error-message">{{ $error }}</div>
+                            @endforeach
+                        @endif
                     </div>
 
                     <div class="form-group">
@@ -430,7 +407,11 @@
                             value="{{ old('phone') }}"
                             required
                         >
-                        <x-input-error :messages="$errors->get('phone')" class="mt-2" />
+                        @if($errors->get('phone'))
+                            @foreach($errors->get('phone') as $error)
+                                <div class="error-message">{{ $error }}</div>
+                            @endforeach
+                        @endif
                     </div>
                 </div>
 
@@ -445,7 +426,11 @@
                         value="{{ old('email') }}"
                         required
                     >
-                    <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                    @if($errors->get('email'))
+                        @foreach($errors->get('email') as $error)
+                            <div class="error-message">{{ $error }}</div>
+                        @endforeach
+                    @endif
                 </div>
 
                 <div class="form-grid">
@@ -476,7 +461,11 @@
                                 <span>One number</span>
                             </div>
                         </div>
-                        <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                        @if($errors->get('password'))
+                            @foreach($errors->get('password') as $error)
+                                <div class="error-message">{{ $error }}</div>
+                            @endforeach
+                        @endif
                     </div>
 
                     <div class="form-group">
@@ -492,21 +481,15 @@
                             >
                             <button type="button" class="password-toggle" onclick="togglePassword('password_confirmation')">👁️</button>
                         </div>
-                        <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+                        @if($errors->get('password_confirmation'))
+                            @foreach($errors->get('password_confirmation') as $error)
+                                <div class="error-message">{{ $error }}</div>
+                            @endforeach
+                        @endif
                     </div>
                 </div>
 
-                <div class="terms-group">
-                    <div class="terms-checkbox">
-                        <input type="checkbox" id="terms" name="terms" class="terms-input" required>
-                        <label for="terms" class="terms-label">
-                            I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.
-                            I understand that this platform provides AI-powered trading tools and that all trading involves risk.
-                        </label>
-                    </div>
-                </div>
-
-                <button type="submit" class="register-button" id="submitBtn">
+                <button type="submit" class="register-button">
                     Create Trading Account
                 </button>
             </form>
@@ -561,23 +544,6 @@
             } else {
                 numberReq.classList.remove('valid');
             }
-        });
-
-        // Form submission
-        document.getElementById('registerForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            const button = document.getElementById('submitBtn');
-            const originalText = button.textContent;
-
-            button.textContent = 'Creating Account...';
-            button.disabled = true;
-
-            setTimeout(() => {
-                button.textContent = originalText;
-                button.disabled = false;
-                console.log('Registration attempted');
-            }, 2000);
         });
 
         // Form animations
