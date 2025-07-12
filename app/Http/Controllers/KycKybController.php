@@ -11,6 +11,10 @@ class KycKybController extends Controller
     {
         $kyc = auth()->user()->kycKyb;
 
+        if( isset($kyc->status) && $kyc->status != "rejected"){
+            return to_route('kyc-kyb.status');
+        }
+
         return view('kyc-kyb.form', compact('kyc'));
     }
 
@@ -48,5 +52,12 @@ class KycKybController extends Controller
         ]);
 
         return redirect()->route('kyc-kyb.form')->with('success', 'Your KYC/KYB application has been submitted.');
+    }
+
+    public function status()
+    {
+        $kyc = auth()->user()->kycKyb;
+
+        return view('kyc-kyb.status', compact('kyc'));
     }
 }

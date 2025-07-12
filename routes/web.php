@@ -48,6 +48,8 @@ Route::middleware(['auth', 'is_user'])->group(function () {
 
     Route::get('/onboarding', [KycKybController::class, 'create'])->name('kyc-kyb.form');
     Route::post('/onboarding', [KycKybController::class, 'store'])->name('kyc-kyb.store');
+
+    Route::get('/application-status', [KycKybController::class, 'status'])->name('kyc-kyb.status');
 });
 
 require __DIR__.'/auth.php';
