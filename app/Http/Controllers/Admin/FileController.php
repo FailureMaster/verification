@@ -20,4 +20,20 @@ class FileController extends Controller
             echo $disk->get($filename);
         }, $filename);
     }
+
+    public function viewInline($filename)
+{
+    $disk = Storage::disk('encrypted');
+
+    if (!$disk->exists($filename)) {
+        abort(404, 'File not found.');
+    }
+
+    $file = $disk->get($filename);
+    $mimeType = $disk->mimeType($filename);
+
+    return response($file)
+        ->header('Content-Type', $mimeType)
+        ->header('Content-Disposition', 'inline; filename="' . $filename . '"');
+}
 }

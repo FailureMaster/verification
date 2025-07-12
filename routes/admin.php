@@ -27,4 +27,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/files/{filename}', [FileController::class, 'viewEncrypted'])
         ->name('admin.files.view')
         ->middleware('auth', 'is_admin');
+
+    Route::get('/admin/files/view/{filename}', [FileController::class, 'viewInline'])
+    ->name('admin.files.view.inline')
+    ->middleware('auth', 'is_admin');
 });
