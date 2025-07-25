@@ -393,9 +393,48 @@
             flex-direction: column;
         }
     }
+
+    .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        text-align: center;
+        text-decoration: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s, box-shadow 0.3s;
+    }
+
+    .btn-primary {
+        background-color: #007bff; /* Blue color */
+        color: white;
+        border: none;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3; /* Darker blue */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-primary:active {
+        background-color: #004085; /* Even darker blue */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .back-cont{
+        display: flex;
+        justify-content:end;
+        margin-bottom:1rem;
+    }
 </style>
 
-<div class="kyc-details-container">
+<div class="kyc-details-container flex-end">
+    <div class="back-cont">
+        <a href="/admin/kyc" value="rejected" class="btn btn-primary" >
+            ⬅️ Back
+        </a>
+    </div>
     <!-- Page Header -->
     <div class="page-header">
         <div style="display: flex; justify-content: space-between; align-items: flex-start;">
@@ -704,12 +743,12 @@
     </div>
 </div>
 <!-- DEBUG: Add this temporarily -->
-<div style="background: yellow; padding: 10px; margin: 10px;">
+{{-- <div style="background: yellow; padding: 10px; margin: 10px;">
     <strong>Debug Representative ID:</strong><br>
     representative_id: "{{ $application->representative_id ?? 'NULL' }}"<br>
     representative_name: "{{ $application->representative_name ?? 'NULL' }}"<br>
     File exists check: {{ $application->representative_id ? 'HAS VALUE' : 'NO VALUE' }}
-</div>
+</div> --}}
 
 <!-- Fullscreen Overlay -->
 <div class="fullscreen-overlay" id="fullscreenOverlay" onclick="closeFullscreen()">
