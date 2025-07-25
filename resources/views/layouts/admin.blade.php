@@ -561,7 +561,7 @@
                     <div class="nav-icon">📊</div>
                     <span>Dashboard</span>
                 </a> -->
-                <a href="#" class="nav-item active">
+                <a href="/admin/kyc" class="nav-item active">
                     <div class="nav-icon">📋</div>
                     <span>KYC Applications</span>
                 </a>
@@ -572,10 +572,13 @@
             </nav>
 
             <div class="logout-section">
-                <a href="#" class="logout-btn">
-                    <span>🚪</span>
-                    <span>Logout</span>
-                </a>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit" class="logout-btn" style="cursor: pointer;">
+                        <span>🚪</span>
+                        <span>Logout</span>
+                    </button>
+                </form>
             </div>
         </aside>
 
