@@ -746,10 +746,7 @@
     <header class="header">
         <div class="header-container">
             <div class="logo-section">
-
                     <img src="{{asset('img/alpha-trade.png')}}" alt="Alpha Trade Logo" style="width: 196px;">
-
-
             </div>
 
             <!-- Desktop Navigation -->
@@ -764,8 +761,8 @@
 
             <!-- Desktop Header Buttons -->
             <div class="header-buttons">
-                <a href="https://verification.tradehousecrm.com/register" class="btn-signup">Sign Here</a>
-                <a href="https://verification.tradehousecrm.com/login" class="btn-login">Login</a>
+                <a href="https://verification.alphatradecrm.com/register" class="btn-signup">Sign Here</a>
+                <a href="https://verification.alphatradecrm.com/login" class="btn-login">Login</a>
             </div>
 
             <!-- Mobile Menu Button -->
